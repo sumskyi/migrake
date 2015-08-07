@@ -19,7 +19,7 @@ module Migrake
   #
   # Returns the Set of tasks that were run.
   def self.run(set, store)
-    (set - store.all).each do |task|
+    (set.to_a - store.all.to_a).each do |task|
       Rake::Task[task].invoke
       store.put(task)
     end

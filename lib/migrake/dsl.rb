@@ -18,13 +18,13 @@ module Migrake
         end
 
         desc "Tell migrake that all defined tasks have already been run"
-        task ready: :check_store do
+        task :ready => :check_store do
           Migrake.store.write(tasks)
         end
       end
 
       desc "Run the tasks defined by migrake"
-      task migrake: "migrake:check_store" do
+      task :migrake => "migrake:check_store" do
         Migrake.run(tasks, Migrake.store)
       end
     end
